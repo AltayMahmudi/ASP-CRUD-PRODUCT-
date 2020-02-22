@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+<a asp-action="create" class="btn btn-outline-primary">New Product</a>
+<table class="table table-striped mt-4" >
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>
+            
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+		{ 
+        <tr>
+
+            <td>@item.Title</td>
+            <td>@item.Price</td>
+            <td>@item.Category.Name</td>
+            <td>
+                 <a asp-action="edit" asp-route-productid="@item.Id">
+                    <i class="fas fa-pen"></i>
+                </a>
+                <a asp-action="delete" asp-route-productid="@item.Id" onclick="return confirm('ARE YOU SURE TO DELETE THIS?')" class="text-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
